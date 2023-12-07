@@ -12,9 +12,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("lib/assets/bg.jpg"),
             ),
@@ -23,23 +24,23 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Welcome",
                   style: TextStyle(fontSize: 35, color: Colors.white),
                 ),
-                SizedBox(height: 25,),
+                const SizedBox(height: 25,),
                 GestureDetector(
                   child: Container(
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(25),color: Colors.deepPurpleAccent,),
                     width:300 ,
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     
-                    child: Center(
+                    child: const Center(
                       child: Text("Enter the Application",style: TextStyle(color: Colors.white,fontSize: 25),)
                     ),
                   ),
                   onTap: () => Navigator.push( context,
-                    MaterialPageRoute(builder: (context) => SearchPage()),
+                    MaterialPageRoute(builder: (context) => const SearchPage()),
   ),
                 )
               ],

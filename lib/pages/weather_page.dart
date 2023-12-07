@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import "package:flutter/material.dart";
-import "package:lottie/lottie.dart";
 import "package:weatherapp/services/weather_service.dart";
 
 import "../models/weather_model.dart";
@@ -33,29 +32,7 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   //weather animations
-  String getWeatherannimation(String? mainCondition) {
-    if (mainCondition == null) return "lib/assets/sunny.json";
-
-    switch (mainCondition.toLowerCase()) {
-      case 'clouds':
-      case 'mist':
-      case 'smoke':
-      case 'haze':
-      case 'dust':
-      case 'fog':
-        return 'lib/assets/cloud.json';
-      case 'rain':
-      case 'drizzle':
-      case 'shower rain':
-        return 'lib/assets/rain.json';
-      case 'thunderstorm':
-        return 'lib/assets/thunder.json';
-      case 'clear':
-        return 'lib/assets/sunny.json';
-      default:
-        return 'lib/assets/sunny.json';
-    }
-  }
+  
 
   @override
   void initState() {
@@ -66,8 +43,10 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+      appBar: AppBar(  
+                                     
+        backgroundColor: Colors.purpleAccent,
+        elevation: 0,
         leading:IconButton(onPressed: (){
         Navigator.pop(context);
       }, icon: Icon(Icons.arrow_back)
@@ -85,14 +64,14 @@ class _WeatherPageState extends State<WeatherPage> {
               stops: [0, 0.9],
               colors: [
                 // Colors are easy thanks to Flutter's Colors class.
-                Colors.deepPurple,
+                Colors.purpleAccent,
                 Colors.deepPurpleAccent.shade100,
               ],
             ),
           ),
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.all(0),
               child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -101,7 +80,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     ),
                     Container(
                       height: 280,
-                      width: 350,
+                      width: 380,
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(50),
@@ -111,19 +90,26 @@ class _WeatherPageState extends State<WeatherPage> {
                           stops: [0, 0.8],
                           colors: [
                             // Colors are easy thanks to Flutter's Colors class.
-                            Colors.purple.shade200,
+                            Colors.purpleAccent.shade200,
                             Colors.deepPurpleAccent,
                           ],
                         ),
+                        boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        )]
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(25.0),
+                        padding: const EdgeInsets.only(left: 10,top:20,bottom: 20),
                         child: SafeArea(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Row(
                                     children: [
@@ -139,12 +125,9 @@ class _WeatherPageState extends State<WeatherPage> {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(width: 25,),
                                   Text(
-                                      now.hour.toString() +
-                                          ":" +
-                                          now.minute.toString() +
-                                          ":" +
-                                          now.second.toString(),
+                                      "${now.hour}:${now.minute}:${now.second}",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 25)),
@@ -152,8 +135,9 @@ class _WeatherPageState extends State<WeatherPage> {
                               ),
                               Column(
                                 children: [
+                                  
                                   Text(
-                                    "${_weather?.temp.round()} C",
+                                    "${_weather?.temp.round()} °C",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 40),
@@ -169,6 +153,7 @@ class _WeatherPageState extends State<WeatherPage> {
                               ),
                               Row(
                                 children: [
+                                  SizedBox(width: 25,),
                                   Icon(
                                     Icons.calendar_month,
                                     size: 25,
@@ -177,11 +162,7 @@ class _WeatherPageState extends State<WeatherPage> {
                                     width: 15,
                                   ),
                                   Text(
-                                      now.day.toString() +
-                                          "/" +
-                                          now.month.toString() +
-                                          "/" +
-                                          now.year.toString(),
+                                      "${now.day}/${now.month}/${now.year}",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 25))
@@ -197,20 +178,27 @@ class _WeatherPageState extends State<WeatherPage> {
                     ),
                     Container(
                       height: 400,
-                      width: 350,
+                      width: 380,
                       decoration: BoxDecoration(
                         color: Colors.grey,
                         borderRadius: BorderRadius.circular(50),
                         gradient: LinearGradient(
-                          begin: Alignment.topCenter,
+                          begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           stops: [0, 0.8],
                           colors: [
                             // Colors are easy thanks to Flutter's Colors class.
-                            Colors.purple.shade200,
+                            Colors.purpleAccent.shade200,
                             Colors.deepPurpleAccent,
                           ],
                         ),
+                        boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        )]
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(25.0),

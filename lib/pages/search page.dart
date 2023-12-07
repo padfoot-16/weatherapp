@@ -14,8 +14,9 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("lib/assets/bg.jpg"),
             )),
@@ -31,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     controller: controller,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: "Type In A city name",
                       icon: Icon(Icons.search),
                       filled: true,
@@ -40,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 25,),
+              const SizedBox(height: 25,),
               Container(
                 decoration: BoxDecoration(
                   color: Colors.deepPurpleAccent,
@@ -49,8 +50,8 @@ class _SearchPageState extends State<SearchPage> {
                 child: GestureDetector(
                   onTap: () => Navigator.push( context,
                     MaterialPageRoute(builder: (context) => WeatherPage(cityname: controller.text))),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Search",style:TextStyle(color: Colors.white)),
                   ),
                 ),
